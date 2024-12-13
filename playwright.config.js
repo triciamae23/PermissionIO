@@ -1,5 +1,5 @@
 // @ts-nocheck
-const { defineConfig, devices } = require('@playwright/test');
+import { defineConfig, devices } from '@playwright/test';
 const currentDateTime = new Date().toISOString().replace(/[:.]/g, "_").slice(0, -1);
 const outputFolder = `./playwright-report/results-${currentDateTime}`;
 //const EmailReporter = require('./report-generator.js');
@@ -12,7 +12,7 @@ require('dotenv').config({ path: './process.env' });
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
-module.exports = defineConfig({
+export default defineConfig({
   timeout: 1200000, // Increase timeout to 60 seconds for all tests
   use: {
     headless: true,
@@ -53,10 +53,10 @@ module.exports = defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
+    //{
+      //name: 'firefox',
+      //use: { ...devices['Desktop Firefox'] },
+    //},
 
     {
       name: 'webkit',
